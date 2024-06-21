@@ -6,6 +6,7 @@ import buddhaImage from "../../assets/sadstory/boy.png";
 import gameImage from "../../assets/sadstory/boy.png";
 import HighExamImage from "../../assets/sadstory/flower.png";
 import LowExamImage from "../../assets/sadstory/flower.png";
+import { useTheme } from "../ThemeContext";
 
 export default function Scene() {
   const [lowExamStyles, setlowExamStyles] = useState("opacity-0 right-[-20%]");
@@ -79,53 +80,56 @@ export default function Scene() {
     }, 9500);
   }, []);
 
+  const { season } = useTheme();
   return (
-    <div className="relative w-[1500px] h-[800px] overflow-hidden bg-black">
-      <div className="fixed top-0 left-0 w-full p-4 bg-white/70 backdrop-blur-md">
-        {storyText}
+    <div
+      className={` ${season}-gradient relative w-full h-full overflow-hidden  `}
+    >
+      <div className="fixed top-0 left-0 w-full p-4 bg-white/70 backdrop-blur-md flex justify-between items-center">
+        <div>{storyText}</div>
+        <img
+          src={boySrc}
+          alt="Boy"
+          className="absolute bottom-[10%] transition-all duration-2000 w-[15%]"
+          style={boyStyle}
+        />
+        {buddhaVisible && (
+          <img
+            src={buddhaImage}
+            alt="Buddha"
+            className="absolute bottom-[10%] left-[45%] transition-all duration-2000 opacity-100 w-[15%]"
+          />
+        )}
+        <div
+          className={`absolute bottom-[50%] right-[35%] bg-white p-2.5 rounded-lg shadow-lg transition-all duration-2000 ${chatBoxOpacity}`}
+        >
+          Hãy học tại .....
+        </div>
+        <img
+          src={LowExamImage}
+          alt="Flower"
+          className={`absolute transition-all duration-2000 ${lowExamStyles} w-[10%]`}
+        />
+        {gameVisible && (
+          <img
+            src={gameImage}
+            alt="Game"
+            className="absolute bottom-[30%] left-[50%] transition-all duration-2000 opacity-100 w-[15%]"
+          />
+        )}
+        {studyVisible && (
+          <img
+            src={studyingBoyImage}
+            alt="Studying"
+            className="absolute bottom-[10%] left-[30%] transition-all duration-2000 opacity-100 w-[15%]"
+          />
+        )}
+        <img
+          src={HighExamImage}
+          alt="Flower"
+          className={`absolute transition-all duration-2000 ${highExamStyles} w-[10%]`}
+        />
       </div>
-      <img
-        src={boySrc}
-        alt="Boy"
-        className="absolute bottom-[10%] transition-all duration-2000 w-[15%]"
-        style={boyStyle}
-      />
-      {buddhaVisible && (
-        <img
-          src={buddhaImage}
-          alt="Buddha"
-          className="absolute bottom-[10%] left-[45%] transition-all duration-2000 opacity-100 w-[15%]"
-        />
-      )}
-      <div
-        className={`absolute bottom-[50%] right-[35%] bg-white p-2.5 rounded-lg shadow-lg transition-all duration-2000 ${chatBoxOpacity}`}
-      >
-        Hãy học tại .....
-      </div>
-      <img
-        src={LowExamImage}
-        alt="Flower"
-        className={`absolute transition-all duration-2000 ${lowExamStyles} w-[10%]`}
-      />
-      {gameVisible && (
-        <img
-          src={gameImage}
-          alt="Game"
-          className="absolute bottom-[30%] left-[50%] transition-all duration-2000 opacity-100 w-[15%]"
-        />
-      )}
-      {studyVisible && (
-        <img
-          src={studyingBoyImage}
-          alt="Studying"
-          className="absolute bottom-[10%] left-[30%] transition-all duration-2000 opacity-100 w-[15%]"
-        />
-      )}
-      <img
-        src={HighExamImage}
-        alt="Flower"
-        className={`absolute transition-all duration-2000 ${highExamStyles} w-[10%]`}
-      />
     </div>
   );
 }
