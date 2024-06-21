@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import anh1 from "../../assets/GameImage/img1.jpg";
-import anh2_winter from "../../assets/GameImage/img2_winter.jpg";
-import anh2_sp from "../../assets/GameImage/img2_sp.jpg";
-import anh2_fall from "../../assets/GameImage/img2_fall.jpg";
-import anh2_sum from "../../assets/GameImage/img2_sum.jpg";
+import anh2_winter from "../../assets/GameImage/img2_winter.png";
+import anh2_sp from "../../assets/GameImage/img2_sp.png";
+import anh2_fall from "../../assets/GameImage/img2_fall.png";
+import anh2_sum from "../../assets/GameImage/img2_sum.png";
 
 import anh3 from "../../assets/GameImage/img3.jpg";
 import anh4 from "../../assets/GameImage/img4.jpg";
