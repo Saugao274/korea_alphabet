@@ -1,27 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import anh1 from "../../assets/GameImage/img1.jpg";
-import anh2 from "../../assets/GameImage/img2.jpg";
+import anh2_winter from "../../assets/GameImage/img2_winter.jpg";
+import anh2_sp from "../../assets/GameImage/img2_sp.jpg";
+import anh2_fall from "../../assets/GameImage/img2_fall.jpg";
+import anh2_sum from "../../assets/GameImage/img2_sum.jpg";
+
 import anh3 from "../../assets/GameImage/img3.jpg";
 import anh4 from "../../assets/GameImage/img4.jpg";
-import game1 from "../../assets/GameImage/img1.jpg";
+import game1_winter from "../../assets/GameImage/img1_winter.jpg";
+import game1_sp from "../../assets/GameImage/img1_sp.jpg";
+import game1_fall from "../../assets/GameImage/img1_fall.jpg";
+import game1_sum from "../../assets/GameImage/img1_sum.jpg";
+
 import { useTheme } from "../../ThemeContext";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import { gameImage } from "../../assets";
 
 const Slider = () => {
   const { season } = useTheme();
+  const [img, setImg] = useState({ img1: game1_sp, img2: anh2_sp });
+
+  useEffect(() => {
+    if (season === "spring") setImg({ img1: game1_sp, img2: anh2_sp });
+    if (season === "fall") setImg({ img1: game1_fall, img2: anh2_fall });
+    if (season === "summer") setImg({ img1: game1_sum, img2: anh2_sum });
+    if (season === "winter") setImg({ img1: game1_winter, img2: anh2_winter });
+  }, [season]);
+
   const [slides, setSlides] = useState([
     {
-      img: game1,
+      img: img.img1,
       title: "Word Game",
       description:
         " Word game is a game that helps people improve their new words by guessing a new word.",
       link: "/trailer2",
     },
     {
-      img: anh2,
+      img: img.img2,
       title: "Sad Story",
       description:
         "Weld letters will fall from above and the player must enter the correct letters on the screen.",
@@ -31,9 +47,17 @@ const Slider = () => {
       img: anh3,
       title: "Bubble Game",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur .",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur.",
     },
   ]);
+
+  useEffect(() => {
+    setSlides((prevSlides) => [
+      { ...prevSlides[0], img: img.img1 },
+      { ...prevSlides[1], img: img.img2 },
+      prevSlides[2],
+    ]);
+  }, [img]);
 
   const nextSlide = () => {
     setSlides((prevSlides) => {
